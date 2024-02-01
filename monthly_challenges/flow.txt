@@ -1,0 +1,128 @@
+Open terminal in  V S code Create Virtualenv
+    Make sure you know the path of current Directory
+        py -m venv env
+        env folder created
+
+Activate Virtualenv
+    env_name/scripts/Activate
+    Terminal
+        python manage.py runserver
+
+Install Django
+
+Create django project
+    Terminal
+        Django-admin startproject project_name
+
+    Project Root Directory
+        >project_name
+            >project_name    
+                >__pycache__
+                __init__.py 
+                asgi.py 
+                settings.py 
+                urls.py 
+                wsgi.py
+                db.sqlite3
+                manage.py
+    
+    open project_folder directly on V S Code "PROJECT NAME"
+    cut and paste env folder in Project Directory ie "PROJECT NAME" from the path wherever the 'virtualenv created'
+ 
+  
+Create app on "PROJECT_NAME" Folder
+    Create Django App
+        Terminal
+            Django-admin startapp app_name
+    App Directory
+        app_name
+            > __pycache__ 
+            > migrations  
+            __init__.py 
+            admin.py 
+            apps.py 
+            models.py 
+            tests.py 
+            views.py
+
+
+Final view of File tree In V S Code of your Django Project would be somehow like this :
+    
+    > PROJECT_NAME
+        > app_name
+            > __pycache_
+            > migrations
+            __init__.py 
+            admin.py 
+            apps.py 
+            models.py 
+            tests.py
+            urls.py 
+            views.py
+        > env
+        project_name
+            > __pycache__
+            __init__.py 
+            asgi.py 
+            settings.py 
+            urls.py 
+            wsgi.py
+            db.sqlite3
+            manage.py
+
+Configure Installed apps in settings.py
+    Just type your 'app_name' in Installed apps list
+
+        INSTALLED_APPS = [
+            'app_name',
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+        ]
+
+Configure app urls on 'Project Root Directory'
+    Just by Including path on 'urls.py'
+
+        from django.contrib import admin
+        from django.urls import path, include
+
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path("", include("app_name.urls")),
+        ]
+
+
+Create the first view by creating python function in 'views.py' inside 'App Directory'
+
+views.py
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    # Create your views here.
+
+    def Home(request):
+        return HttpResponse("Hello !")
+
+
+Configure views to urls.py file in 'App Directory'
+    Create new file name urls.py
+    urls.py
+        from django.urls import path
+        from .views import Home
+
+        urlpatterns =  [
+            path('',Home,name = 'Home'),
+        ] 
+
+
+
+    Run Django-server on Local machine
+        python manage.py runserver
+
+
+    
+
+    
